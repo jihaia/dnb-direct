@@ -19,16 +19,17 @@ module DnB
 
               # Fetches the token from the authorization service.
               def api_token
-                  response = connection.post do |req|
-                      req.url '/v2/token'
-                      req.headers[:authorization] = "Basic #{api_auth}"
-                      req.body = '{ "grant_type" : "client_credentials" }'
+                  if @token.nil?
+                      response = connection.post do |req|
+                          req.url '/v2/token'
+                          req.headers[:authorization] = "Basic #{api_auth}"
+                          req.body = '{ "grant_type" : "client_credentials" }'
+                      end
+
+                      @token = JSON.parse(response.body)['access_token']
                   end
-
-                  JSON.parse(response.body)['access_token']
+                  token
               end
-
-
 
               def connection
                   @conn ||= Faraday.new(connection_options) do |faraday|
@@ -38,7 +39,7 @@ module DnB
                   end
               end
 
-              private
+                private
 
               def connection_options
                   {
