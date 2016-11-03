@@ -28,7 +28,7 @@ module DnB
                   JSON.parse(response.body)['access_token']
               end
 
-                private
+
 
               def connection
                   @conn ||= Faraday.new(connection_options) do |faraday|
@@ -37,6 +37,8 @@ module DnB
                       faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
                   end
               end
+
+              private
 
               def connection_options
                   {
