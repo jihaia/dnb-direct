@@ -44,8 +44,7 @@ module DnB
                   {
                       url: BASE_URL,
                       headers: {
-                          content_type: 'application/json',
-                          authorization: 'Bearer yM9RbRf5gkwxM5TIfx9ql3C3OOr1'
+                          content_type: 'application/json'
                       }
                   }
               end

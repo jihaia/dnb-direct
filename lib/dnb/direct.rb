@@ -18,6 +18,3 @@ module DnB
 
   end
 end
-
-
-require "dnb/direct/plus/company"
