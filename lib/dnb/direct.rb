@@ -1,5 +1,6 @@
 require "dnb/direct/version"
 require 'active_support/all'
+require 'colored'
 
 module DnB
   module Direct
@@ -10,6 +11,7 @@ module DnB
     class Plus
 
       autoload :Content, 'dnb/direct/plus/content'
+      autoload :Search,  'dnb/direct/plus/search'
 
     end
 

@@ -14,4 +14,14 @@ class DnB::Direct::Plus::Content
         JSON.parse(response.body)
     end # def self.profile_with_linkage
 
+
+    def self.plus_executives(params = {})
+        response = DnB::Direct::Plus.connection.get do |req|
+            req.url "/v1/data/duns/#{params[:duns]}?productId=cmpelk&versionId=v1"
+            req.headers[:authorization] = "Bearer #{DnB::Direct::Plus.api_token}"
+        end
+
+        JSON.parse(response.body)
+    end # def self.plus_executives
+
 end # class

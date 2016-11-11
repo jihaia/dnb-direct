@@ -15,7 +15,7 @@ module DnB
                   raise ArgumentError, 'api_key is missing' if api_key.blank?
                   raise ArgumentError, 'api_secret is missing' if api_secret.blank?
                   Base64.strict_encode64(api_key + ':' + api_secret)
-              end
+              end # def api_auth
 
               # Fetches the token from the authorization service.
               def api_token
@@ -25,11 +25,10 @@ module DnB
                           req.headers[:authorization] = "Basic #{api_auth}"
                           req.body = '{ "grant_type" : "client_credentials" }'
                       end
-
                       @token = JSON.parse(response.body)['access_token']
                   end
                   token
-              end
+              end # def api_token
 
               def connection
                   @conn ||= Faraday.new(connection_options) do |faraday|
