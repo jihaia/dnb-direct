@@ -11,7 +11,7 @@ class DnB::Direct::Plus::Content
             req.headers[:authorization] = "Bearer #{DnB::Direct::Plus.api_token}"
         end
 
-        JSON.parse(response.body)
+        DnB::Direct::Plus::Mappings::Organization.extract_single(response.body, :read)
     end # def self.profile_with_linkage
 
 
